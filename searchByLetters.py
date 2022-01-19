@@ -1,6 +1,6 @@
 from words import rawList
-from generateDictionary import getDigitList
-from generateDictionary import generateLists
+import generateDictionary
+import generateDictionary
 
 
 def searchKnownDigit(rawList, masterList, letter, digit):
@@ -22,7 +22,7 @@ def mergePossibles(first, second):
         run = True
         while run:
             if (i == len(out) - 1):
-                return outq
+                return out
             else:
                 if (x < out[i]):
                     run = False
@@ -31,4 +31,35 @@ def mergePossibles(first, second):
                     i += 1
                 elif (x > out[i]):
                     out.pop(i)
+    return out
+
+def searchWord(word, letter):
+    for l in word:
+        if l == letter:
+            return True
+    return False
+
+
+#can also use this for the sublists of masterList for yellow words
+def removeWords(rawList, possibles, letter):
+    out = []
+    for n in possibles:
+        if (searchWord(rawList[n],letter)):
+            pass
+        else:
+            out.append(n)
+    return out
+
+def addWordsWithDigit(rawList, masterList, possibles, letter, digit):
+    out = []
+    digitList = masterList[digit]
+    for n in possibles:
+        if (digitList[n] == letter):
+            out.append(n)
+    return out
+
+def parseList(rawList, possibles):
+    out = []
+    for n in possibles:
+        out.append(rawList[n])
     return out

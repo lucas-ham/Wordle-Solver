@@ -19,5 +19,3 @@ def generateLists(rawList):
     for i in range(5):
         masterList[i] = getDigitList(rawList, i)
     return masterList
-
-l = generateLists(rawList)
