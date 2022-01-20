@@ -2,6 +2,9 @@ from words import rawList
 from generateDictionary import *
 from searchByLetters import *
 from wordleSolve import *
+import string
+from collections import OrderedDict
+from improveSolver import *
 
 
 leaveLoop = False
@@ -30,11 +33,10 @@ def mainRun():
 
     if possibles:
         print("Here are the possible words with the letters you currently know!")
-        print(parseList(rawList, possibles))
+        printWords(rawList, possibles)
     elif leaveLoop:
         return None
 
-    print(leaveLoop)
     while not leaveLoop:
         if (possibles and len(possibles)!=0):
             g = enterWords(0)
@@ -54,18 +56,18 @@ def mainRun():
             possibles = mergePossibles(g, y)
 
             if possibles:
-                print(parseList(rawList, possibles))
+                printWords(rawList, possibles)
 
             grey = enterWords(3)
             possibles = parseGrey(rawList, possibles, grey)
 
         if possibles and len(possibles) < 2:
             print("Here is your wordle for today!")
-            print(parseList(rawList,possibles))
+            printWords(rawList, possibles)
             raise leaveLoop
         elif possibles:
             print("Here are the possible words with the letters you currently know!")
-            print(parseList(rawList, possibles))
+            printWords(rawList, possibles)
             tries += 1
         if tries == 6 or leaveLoop:
             break
