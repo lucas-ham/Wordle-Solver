@@ -16,13 +16,20 @@ def searchKnownDigit(rawList, masterList, letter, digit):
 
 
 def mergePossibles(first, second):
-    if len(first) == 0:
-        return second
-    elif len(second) == 0:
+    if first and second:
+        if len(first) == 0:
+            return second
+        elif len(second) == 0:
+            return first
+        else:
+            merged = [value for value in first if value in second]
+            return merged
+    elif first:
         return first
+    elif second:
+        return second
     else:
-        merged = [value for value in first if value in second]
-        return merged
+        return None
 
 def searchWord(word, letter):
     for l in word:

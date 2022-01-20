@@ -10,7 +10,7 @@ class letterStorage():
         self.let = letter
         self.digit = digit
 
-def enterWords(color):
+def wordCollector(color):
     if (color == 0):
         print("Please input all green letters \n Use the format 'Letter, Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1'\n When you have entered all green letters, please enter an empty line (ie '') \n")
     elif (color == 1):
@@ -23,6 +23,8 @@ def enterWords(color):
         value = input("Please Enter Your Letter and Digit:     ")
         if (value == ""):
             break
+        elif (value == "quit"):
+            return None
         elif (len(value) != 3):
             print("Please make sure you followed the formatting correctly, including looking for extra spaces!")
             continue
@@ -42,16 +44,17 @@ def enterWords(color):
     return letterList
 
 def parseGreen(rawList, greenList):
-    if len(greenList) > 0:
-        possibles = searchKnownDigit(rawList, masterList, greenList[0].let, greenList[0].digit)
-    else:
-        return []
-    if len(greenList) > 1:
-        i = 1
-        while i < len(greenList):
-            possibles = addWordsWithDigit(rawList, masterList, possibles, greenList[i].let, greenList[i].digit)
-            i+=1
-    return possibles
+    if greenList:
+        if len(greenList) > 0:
+            possibles = searchKnownDigit(rawList, masterList, greenList[0].let, greenList[0].digit)
+        else:
+            return []
+        if len(greenList) > 1:
+            i = 1
+            while i < len(greenList):
+                possibles = addWordsWithDigit(rawList, masterList, possibles, greenList[i].let, greenList[i].digit)
+                i+=1
+        return possibles
 
 def yellowInitSearch(rawList, yellowLet):
     possibles = []
@@ -72,18 +75,20 @@ def yellowAddWord(rawList, masterList, possibles, yellowLet):
     return out
 
 def parseYellow(rawList, yellowList):
-    if (len(yellowList) > 0):
-        possibles = yellowInitSearch(rawList, yellowList[0])
-    else:
-        return []
-    if (len(yellowList) > 1):
-        i = 1
-        while i < len(yellowList):
-            possibles = yellowAddWord(rawList, masterList, possibles, yellowList[i])
-            i += 1
-    return possibles
+    if yellowList:
+        if (len(yellowList) > 0):
+            possibles = yellowInitSearch(rawList, yellowList[0])
+        else:
+            return []
+        if (len(yellowList) > 1):
+            i = 1
+            while i < len(yellowList):
+                possibles = yellowAddWord(rawList, masterList, possibles, yellowList[i])
+                i += 1
+        return possibles
 
 def parseGrey(rawList, possibles, greyList):
-    for let in greyList:
-        possibles = removeWords(rawList, possibles, let.let)
-    return possibles
+    if greyList:
+        for let in greyList:
+            possibles = removeWords(rawList, possibles, let.let)
+        return possibles
