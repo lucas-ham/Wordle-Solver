@@ -26,7 +26,7 @@ def mainRun():
     grey = enterWords(3)
     if (possibles and len(possibles) == 0):
         possibles = list(range(0,len(rawList)))
-    grey = parseGrey(rawList, possibles, grey)
+    possibles = parseGrey(rawList, possibles, grey)
 
     if possibles:
         print("Here are the possible words with the letters you currently know!")
@@ -36,7 +36,6 @@ def mainRun():
 
     print(leaveLoop)
     while not leaveLoop:
-        print(leaveLoop)
         if (possibles and len(possibles)!=0):
             g = enterWords(0)
             g = parseGreen(rawList, g)
@@ -45,7 +44,7 @@ def mainRun():
             y = parseYellow(rawList, y)
             possibles = mergePossibles(possibles, y)
             grey = enterWords(3)
-            grey = parseGrey(rawList, possibles, grey)
+            possibles = parseGrey(rawList, possibles, grey)
         else:
             tries = 1
             g = enterWords(0)
@@ -58,7 +57,7 @@ def mainRun():
                 print(parseList(rawList, possibles))
 
             grey = enterWords(3)
-            grey = parseGrey(rawList, possibles, grey)
+            possibles = parseGrey(rawList, possibles, grey)
 
         if possibles and len(possibles) < 2:
             print("Here is your wordle for today!")

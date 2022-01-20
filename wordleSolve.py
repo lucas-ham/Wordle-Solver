@@ -108,6 +108,5 @@ def removeWords(rawList, possibles, letter):
 def parseGrey(rawList, possibles, greyList):
     if greyList:
         for let in greyList:
-            print("Parsing for " let.let)
             possibles = removeWords(rawList, possibles, let.let)
         return possibles
