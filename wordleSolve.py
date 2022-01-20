@@ -87,8 +87,27 @@ def parseYellow(rawList, yellowList):
                 i += 1
         return possibles
 
+
+def searchWord(word, letter):
+    for l in word:
+        if l == letter:
+            return True
+    return False
+
+
+#can also use this for the sublists of masterList for yellow words
+def removeWords(rawList, possibles, letter):
+    out = []
+    for n in possibles:
+        if (searchWord(rawList[n],letter)):
+            pass
+        else:
+            out.append(n)
+    return out
+
 def parseGrey(rawList, possibles, greyList):
     if greyList:
         for let in greyList:
+            print("Parsing for " let.let)
             possibles = removeWords(rawList, possibles, let.let)
         return possibles
