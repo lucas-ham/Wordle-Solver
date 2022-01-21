@@ -39,7 +39,9 @@ def rankWords(rawList, possibles, dFreq):
     d_inv = {v: k for k, v in d.items()}
     rankedOrder = []
     for key in sorted(d_inv):
-        rankedOrder.append(d_inv[key])
+        for lookup in d.keys():
+            if d[lookup] == key:
+                rankedOrder.append(lookup)
     rankedOrder.reverse()
     return rankedOrder
 
