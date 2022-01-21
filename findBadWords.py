@@ -26,7 +26,9 @@ def generateIndices(rawList, tried):
 
 def printBad(rawList, tried):
     possibles = generateIndices(rawList, tried)
-    printWords(rawList, possibles)
+    if len(possibles) > 0:
+        print("\n Here are the words that will test the most possible letters!")
+        printWords(rawList, possibles)
 
 t = list(string.ascii_lowercase)
 t.remove('a')

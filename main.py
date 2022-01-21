@@ -50,7 +50,6 @@ def mainRun():
         print("Here are the possible words with the letters you currently know!")
         printWords(rawList, possibles)
         if easyMode:
-            print("\n Here are the words that will test the most possible letters!")
             printBad(rawList, known)
     elif leaveLoop:
         return None
@@ -102,7 +101,6 @@ def mainRun():
             print("Here are the possible words with the letters you currently know!")
             printWords(rawList, possibles)
             if easyMode:
-                print("\n Here are the words that will test the most possible letters!")
                 printBad(rawList, known)
             tries += 1
         if tries == 6 or leaveLoop:
