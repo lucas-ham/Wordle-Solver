@@ -8,6 +8,10 @@ from improveSolver import *
 from findBadWords import *
 
 
+##SETTINGS:
+easyMode = True
+
+
 leaveLoop = False
 
 def enterWords(color):
@@ -45,8 +49,9 @@ def mainRun():
     if possibles:
         print("Here are the possible words with the letters you currently know!")
         printWords(rawList, possibles)
-        print("\n Here are the words that will test the most possible letters!")
-        printBad(rawList, known)
+        if easyMode:
+            print("\n Here are the words that will test the most possible letters!")
+            printBad(rawList, known)
     elif leaveLoop:
         return None
 
@@ -83,9 +88,6 @@ def mainRun():
                 known += temp[1]
             possibles = mergePossibles(g, y)
 
-            if possibles:
-                printWords(rawList, possibles)
-
             grey = enterWords(3)
             temp = parseGrey(rawList, possibles, grey)
             if temp:
@@ -99,8 +101,9 @@ def mainRun():
         elif possibles:
             print("Here are the possible words with the letters you currently know!")
             printWords(rawList, possibles)
-            print("\n Here are the words that will test the most possible letters!")
-            printBad(rawList, known)
+            if easyMode:
+                print("\n Here are the words that will test the most possible letters!")
+                printBad(rawList, known)
             tries += 1
         if tries == 6 or leaveLoop:
             break
