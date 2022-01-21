@@ -13,11 +13,11 @@ class letterStorage():
 
 def wordCollector(color):
     if (color == 0):
-        print("Please input all green letters \n Use the format 'Letter, Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1'\n When you have entered all green letters, please enter an empty line (ie '') \n")
+        print("Please input all green letters \n Use the format 'Letter,Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1' (without the quotes)\n When you have entered all green letters, please enter an empty line (ie '') \n")
     elif (color == 1):
-        print("Please input all yellow letters \n Use the format 'Letter, Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1'\n When you have entered all yellow letters, please enter an empty line (ie '') \n")
+        print("Please input all yellow letters \n Use the format 'Letter,Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1' (without the quotes)\n When you have entered all yellow letters, please enter an empty line (ie '') \n")
     else:
-        print("Please input all grey letters \n Use the format 'Letter, Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1'\n When you have entered all grey letters, please enter an empty line (ie '') \n")
+        print("Please input all grey letters \n Use the format 'Letter,Number' to input these values \n For example, if you had found the 'A' in Apple, you would write 'A,1' (without the quotes)\n When you have entered all grey letters, please enter an empty line (ie '') \n")
     i = 0
     letterList = []
     while i < 5:
