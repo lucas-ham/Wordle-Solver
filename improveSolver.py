@@ -27,9 +27,21 @@ def rankWords(rawList, possibles, dFreq):
     for num in possibles:
         word = rawList[num]
         d[num] = 0
+        log = []
         for let in word:
-            d[num] += dFreq[let]
-    return list(OrderedDict(sorted(d.items())).keys())
+            if log.count(let):
+                d[num] += (-1/2)*dFreq[let]
+                pass
+            else:
+                d[num] += dFreq[let]
+                log.append(let)
+    #return list(OrderedDict(sorted(d.items())).keys())
+    d_inv = {v: k for k, v in d.items()}
+    rankedOrder = []
+    for key in sorted(d_inv):
+        rankedOrder.append(d_inv[key])
+    rankedOrder.reverse()
+    return [d, rankedOrder, d_inv]
 
 def printWords(rawList, possibles):
     f = frequencyCreator(rawList, possibles)
