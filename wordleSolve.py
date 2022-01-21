@@ -35,7 +35,7 @@ def wordCollector(color):
             if (not letter.isalpha()):
                 print("Please make sure you only enter valid characters")
                 continue
-            elif (not digit.isnumeric()):
+            elif (not digit.isdigit()):
                 print("Please make sure you entered a valid number 1-5")
                 continue
             else:
