@@ -1,6 +1,7 @@
 from words import rawList
 from generateDictionary import *
 from searchByLetters import *
+import string
 
 masterList = generateLists(rawList)
 
@@ -111,9 +112,12 @@ def removeWords(rawList, possibles, letter):
 
 def parseGrey(rawList, possibles, greyList):
     if greyList:
-        greys =[]
-        for let in greyList:
-            possibles = removeWords(rawList, possibles, let.let)
-            greys.append(let.let)
-        return [possibles, greys]
+        if possibles:
+            greys =[]
+            for let in greyList:
+                possibles = removeWords(rawList, possibles, let.let)
+                greys.append(let.let)
+            return [possibles, greys]
+        else:
+            possibles = list(string.ascii_lowercase)
     return False
