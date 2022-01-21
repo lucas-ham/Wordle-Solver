@@ -29,12 +29,3 @@ def printBad(rawList, tried):
     if len(possibles) > 0:
         print("\n Here are the words that will test the most possible letters!")
         printWords(rawList, possibles)
-
-t = list(string.ascii_lowercase)
-t.remove('a')
-t.remove('u')
-t.remove('d')
-t.remove('i')
-t.remove('o')
-
-tried = ['a','u','d','i','o']
