@@ -24,7 +24,7 @@ def wordCollector(color):
         value = input("Please Enter Your Letter and Digit:     ")
         if (value == ""):
             break
-        elif (value == "quit"):
+        elif (value == "quit" or value == "QUIT"):
             return None
         elif (len(value) != 3):
             print("Please make sure you followed the formatting correctly, including looking for extra spaces!")
