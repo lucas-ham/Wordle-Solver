@@ -40,7 +40,7 @@ def wordCollector(color):
                 continue
             else:
                 digit = int(digit)
-                letterList.append(letterStorage(letter, digit - 1))
+                letterList.append(letterStorage(letter.lower(), digit - 1))
                 i += 1
     return letterList
 
