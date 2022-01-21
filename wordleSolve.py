@@ -45,16 +45,17 @@ def wordCollector(color):
 
 def parseGreen(rawList, greenList):
     if greenList:
+        greens =[]
         if len(greenList) > 0:
+            greens.append(greenList[0].let)
             possibles = searchKnownDigit(rawList, masterList, greenList[0].let, greenList[0].digit)
         else:
             return []
         if len(greenList) > 1:
-            i = 1
-            while i < len(greenList):
-                possibles = addWordsWithDigit(rawList, masterList, possibles, greenList[i].let, greenList[i].digit)
-                i+=1
-        return possibles
+            for obj in greenList[1:]:
+                greens.append(obj.let)
+                possibles = addWordsWithDigit(rawList, masterList, possibles, obj.let, obj.digit)
+        return [possibles, greens]
 
 def yellowInitSearch(rawList, yellowLet):
     possibles = []
@@ -76,14 +77,16 @@ def yellowAddWord(rawList, masterList, possibles, yellowLet):
 
 def parseYellow(rawList, yellowList):
     if yellowList:
+        yellows = []
         if (len(yellowList) > 0):
+            yellows.append(yellowList[0].let)
             possibles = yellowInitSearch(rawList, yellowList[0])
         else:
             return []
         if (len(yellowList) > 1):
-            i = 1
-            while i < len(yellowList):
-                possibles = yellowAddWord(rawList, masterList, possibles, yellowList[i])
+            for obj in yellowList[1:]:
+                yellows.append(obj.let)
+                possibles = yellowAddWord(rawList, masterList, possibles, obj)
                 i += 1
         return possibles
 
@@ -107,6 +110,8 @@ def removeWords(rawList, possibles, letter):
 
 def parseGrey(rawList, possibles, greyList):
     if greyList:
+        greys =[]
         for let in greyList:
             possibles = removeWords(rawList, possibles, let.let)
-        return possibles
+            greys.append(let.let)
+        return [possibles, greys]

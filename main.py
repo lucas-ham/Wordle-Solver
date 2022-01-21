@@ -21,45 +21,66 @@ def enterWords(color):
 def mainRun():
     global leaveLoop
     tries = 1
+    known = []
     g = enterWords(0)
-    g = parseGreen(rawList, g)
+    temp = parseGreen(rawList, g)
+    g = temp[0]
+    known.append(temp[1])
     y = enterWords(1)
-    y = parseYellow(rawList, y)
+    temp = parseYellow(rawList, y)
+    y = temp[0]
+    known.append(temp[1])
     possibles = mergePossibles(g, y)
     grey = enterWords(3)
     if (possibles and len(possibles) == 0):
         possibles = list(range(0,len(rawList)))
-    possibles = parseGrey(rawList, possibles, grey)
+    temp = parseGrey(rawList, possibles, grey)
+    possibles = temp[0]
+    greys.append(temp[1])
 
     if possibles:
         print("Here are the possible words with the letters you currently know!")
         printWords(rawList, possibles)
+        print("\n Here are the words that will test the most possible letters!")
+        printBad(rawList, known)
     elif leaveLoop:
         return None
 
     while not leaveLoop:
         if (possibles and len(possibles)!=0):
             g = enterWords(0)
-            g = parseGreen(rawList, g)
+            temp = parseGreen(rawList, g)
+            g = temp[0]
+            known.append(temp[1])
             possibles = mergePossibles(possibles, g)
             y = enterWords(1)
-            y = parseYellow(rawList, y)
+            temp = parseYellow(rawList, y)
+            y = temp[0]
+            known.append(temp[1])
             possibles = mergePossibles(possibles, y)
             grey = enterWords(3)
-            possibles = parseGrey(rawList, possibles, grey)
+            temp = parseGrey(rawList, possibles, grey)
+            possibles = temp[0]
+            greys.append(temp[1])
         else:
             tries = 1
             g = enterWords(0)
-            g = parseGreen(rawList, g)
+            temp = parseGreen(rawList, g)
+            g = temp[0]
+            known.append(temp[1])
             y = enterWords(1)
-            y = parseYellow(rawList, y)
+            temp = parseYellow(rawList, y)
+            y = temp[0]
+            known.append(temp[1])
             possibles = mergePossibles(g, y)
 
             if possibles:
                 printWords(rawList, possibles)
 
             grey = enterWords(3)
-            possibles = parseGrey(rawList, possibles, grey)
+            temp = parseGrey(rawList, possibles, grey)
+            possibles = temp[0]
+            greys.append(temp[1])
 
         if possibles and len(possibles) < 2:
             print("Here is your wordle for today!")
@@ -68,6 +89,8 @@ def mainRun():
         elif possibles:
             print("Here are the possible words with the letters you currently know!")
             printWords(rawList, possibles)
+            print("\n Here are the words that will test the most possible letters!")
+            printBad(rawList, known)
             tries += 1
         if tries == 6 or leaveLoop:
             break
