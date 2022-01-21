@@ -20,6 +20,6 @@ At any time you can end the program by typing "quit" instead of entering your le
 
 There is a settings section at the top of the "main.py" file. Currently the settings section only has support for enabling and disabling easyMode. By default easyMode is on and thus set to True, but to turn it off just change that value to False.
 
-#EasyMode
+# EasyMode
 
 EasyMode is a mode of playing wordle where you do not have to use the letters you know in each guess. So for example if you had guessed "Apple" and knew the A to be correct, playing under normal/hard rules you would have to use the "A" in your next guess. EasyMode has no such restriction. With easyMode on you'll see two word lists printed. The first will be the standard list you'll always get, and the second will be a list of words that use none of the letters you already know about. The second list will be ranked the same as the first.
