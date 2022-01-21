@@ -119,5 +119,6 @@ def parseGrey(rawList, possibles, greyList):
                 greys.append(let.let)
             return [possibles, greys]
         else:
-            possibles = list(string.ascii_lowercase)
+            possibles = [i for i in range(len(rawList))]
+            return parseGrey(rawList, possibles, greyList)
     return False
