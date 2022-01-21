@@ -41,7 +41,7 @@ def rankWords(rawList, possibles, dFreq):
     for key in sorted(d_inv):
         rankedOrder.append(d_inv[key])
     rankedOrder.reverse()
-    return [d, rankedOrder, d_inv]
+    return rankedOrder
 
 def printWords(rawList, possibles):
     f = frequencyCreator(rawList, possibles)

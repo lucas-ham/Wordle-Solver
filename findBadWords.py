@@ -8,25 +8,24 @@ from improveSolver import *
 
 
 def generateIndices(rawList, tried):
-    print(tried)
     letters = list(string.ascii_lowercase)
     for l in tried:
         if letters.count(l):
             letters.remove(l)
-    newPoss = list(range(len(rawList)))
-    for index in newPoss:
+    allWords = list(range(len(rawList)))
+    newPoss = []
+    for index in allWords:
         word = rawList[index]
+        addWord = True
         for curr in word:
-            if letters.count(curr):
-                pass
-            else:
-                newPoss.remove(index)
-                break
+            if tried.count(curr):
+                addWord = False
+        if addWord:
+            newPoss.append(index)
     return newPoss
 
 def printBad(rawList, tried):
     possibles = generateIndices(rawList, tried)
-    print(len(possibles))
     printWords(rawList, possibles)
 
 t = list(string.ascii_lowercase)
@@ -35,3 +34,5 @@ t.remove('u')
 t.remove('d')
 t.remove('i')
 t.remove('o')
+
+tried = ['a','u','d','i','o']
