@@ -8,11 +8,11 @@ To run, simply navigate to the directory where you have it saved and run the mai
 
 After you input all your letters, a list will be printed of all the words that could work given the letters you know. All the letters you know are in the word will be in all of the words in this list. Additionally, this list is sorted based on letter frequency. Once the list is generated, the solver counts how many times each letter appears in the list, and then each word is given a score equal to the sum of it's letter frequencies. The list is then sorted based on that score. This way you can guarantee that the first word in the list will get information about as many words as possible.
 
-#Formatting
+# Formatting
 
 For any entry, the correct formatting follows the form "Letter,index". The program reads in 1 based indexing, so the "A" in "Apple" is index one. Make sure you submit indices for all of the colors, not just green! When you have finished entering all letters of a color, simply press return to move on to the next step
 
-#Exiting
+# Exiting
 
 At any time you can end the program by typing "quit" instead of entering your letters. It will finish the current iteration and then quit out.
 
