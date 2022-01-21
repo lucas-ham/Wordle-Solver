@@ -88,7 +88,6 @@ def parseYellow(rawList, yellowList):
             for obj in yellowList[1:]:
                 yellows.append(obj.let)
                 possibles = yellowAddWord(rawList, masterList, possibles, obj)
-                i += 1
         return [possibles, yellows]
     return False
 
