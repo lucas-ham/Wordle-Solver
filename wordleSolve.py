@@ -56,6 +56,7 @@ def parseGreen(rawList, greenList):
                 greens.append(obj.let)
                 possibles = addWordsWithDigit(rawList, masterList, possibles, obj.let, obj.digit)
         return [possibles, greens]
+    return False
 
 def yellowInitSearch(rawList, yellowLet):
     possibles = []
@@ -88,7 +89,8 @@ def parseYellow(rawList, yellowList):
                 yellows.append(obj.let)
                 possibles = yellowAddWord(rawList, masterList, possibles, obj)
                 i += 1
-        return possibles
+        return [possibles, yellows]
+    return False
 
 
 def searchWord(word, letter):
@@ -115,3 +117,4 @@ def parseGrey(rawList, possibles, greyList):
             possibles = removeWords(rawList, possibles, let.let)
             greys.append(let.let)
         return [possibles, greys]
+    return False
