@@ -1,7 +1,7 @@
 
 ##takes a list of all the 5 letter words and returns 5 lists, (first, second, third, forth, fifth) corresponding to each of the letters
 
-from words import rawList
+from realWordleList import rawList
 
 
 def getDigitList(rawList, digit):

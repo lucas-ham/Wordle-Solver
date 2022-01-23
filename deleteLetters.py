@@ -1,4 +1,4 @@
-from words import rawList
+from realWordleList import rawList
 from generateDictionary import getDigitList
 from generateDictionary import generateLists
 

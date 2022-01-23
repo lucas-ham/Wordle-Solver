@@ -1,4 +1,4 @@
-from words import rawList
+from realWordleList import rawList
 from generateDictionary import *
 from searchByLetters import *
 from wordleSolve import *

@@ -1,4 +1,4 @@
-from words import rawList
+from realWordleList import rawList
 import generateDictionary
 import generateDictionary
 
@@ -31,7 +31,7 @@ def mergePossibles(first, second):
     else:
         return None
 
-        
+
 
 def addWordsWithDigit(rawList, masterList, possibles, letter, digit):
     out = []
