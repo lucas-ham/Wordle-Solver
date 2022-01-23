@@ -7,6 +7,11 @@ from collections import OrderedDict
 from improveSolver import *
 
 
+def printBadWords(rawList, possibleWords, possibleBad):
+    f = frequencyCreator(rawList, possibleWords)
+    rankedIndices = rankWords(rawList, possibleBad, f)
+    print(parseList(rawList, rankedIndices))
+
 def generateIndices(rawList, tried):
     letters = list(string.ascii_lowercase)
     for l in tried:
@@ -24,8 +29,8 @@ def generateIndices(rawList, tried):
             newPoss.append(index)
     return newPoss
 
-def printBad(rawList, tried):
+def printBad(rawList, tried, possibleWords):
     possibles = generateIndices(rawList, tried)
     if len(possibles) > 0:
         print("\n Here are the words that will test the most possible letters!")
-        printWords(rawList, possibles)
+        printBadWords(rawList, possibleWords, possibles)
