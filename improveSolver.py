@@ -43,7 +43,7 @@ def rankWords(rawList, possibles, dFreq, digitFreq):
         log = []
         digit = 0
         for let in word:
-            d[num] += (2)*digitFreq[digit].storage[let]
+            d[num] += (1)*digitFreq[digit].storage[let]
             if log.count(let):
                 d[num] += (-1/2)*dFreq[let]
                 pass
@@ -85,10 +85,13 @@ def eraseNullLetters(d,digitFreq):
     return digitFreq
 
 
-
-
-def printWords(rawList, possibles):
+def generateGooRanking(rawList, possibles):
     f = frequencyCreator(rawList, possibles)
     f[1] = eraseNullLetters(f[0], f[1])
     rankedIndices = rankWords(rawList, possibles, f[0], f[1])
+    return rankedIndices
+
+
+def printWords(rawList, possibles):
+    rankedIndices = generateGoodRanking(rawList, possibles)
     print(parseList(rawList, rankedIndices))
