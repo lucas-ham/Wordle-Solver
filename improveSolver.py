@@ -85,7 +85,7 @@ def eraseNullLetters(d,digitFreq):
     return digitFreq
 
 
-def generateGooRanking(rawList, possibles):
+def generateGoodRanking(rawList, possibles):
     f = frequencyCreator(rawList, possibles)
     f[1] = eraseNullLetters(f[0], f[1])
     rankedIndices = rankWords(rawList, possibles, f[0], f[1])
