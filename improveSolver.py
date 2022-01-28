@@ -43,7 +43,7 @@ def rankWords(rawList, possibles, dFreq, digitFreq):
         log = []
         digit = 0
         for let in word:
-            d[num] += 2*digitFreq[digit].storage[let]
+            d[num] += (2)*digitFreq[digit].storage[let]
             if log.count(let):
                 d[num] += (-1/2)*dFreq[let]
                 pass
@@ -60,7 +60,35 @@ def rankWords(rawList, possibles, dFreq, digitFreq):
     rankedOrder.reverse()
     return rankedOrder
 
+def checkDigitExistence(let, digitFreq):
+    sum = 0
+    for i in range(5):
+        if (digitFreq[i].storage[let]):
+            sum += 1
+    return sum
+
+def findWhichDigit(let, digitFreq):
+    for i in range(5):
+        if digitFreq[i].storage[let]:
+            return i
+    return None
+
+def eraseNullLetters(d,digitFreq):
+    for let in list(string.ascii_lowercase):
+        if num := checkDigitExistence(let, digitFreq):
+            if num > 1:
+                pass
+            else:
+                digit = findWhichDigit(let, digitFreq)
+                digitFreq[digit].storage[let] = 0
+                d[let] = 1/2*d[let]
+    return digitFreq
+
+
+
+
 def printWords(rawList, possibles):
     f = frequencyCreator(rawList, possibles)
+    f[1] = eraseNullLetters(f[0], f[1])
     rankedIndices = rankWords(rawList, possibles, f[0], f[1])
     print(parseList(rawList, rankedIndices))
