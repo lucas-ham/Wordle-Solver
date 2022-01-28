@@ -14,21 +14,36 @@ from collections import OrderedDict
 
 #UPGRADE would be to speed up this computation by saving the current frequencys and updating them with each new word
 
+class digitStorer():
+    def __init__(self):
+        self.storage = dict.fromkeys(string.ascii_lowercase, 0)
+    def add(self, let):
+        self.storage[let] +=1
+
+
 def frequencyCreator(rawList, possibles):
     d = dict.fromkeys(string.ascii_lowercase, 0)
+    digitList = []
+    for i in range(5):
+        digitList.append(digitStorer())
     for num in possibles:
         word = rawList[num]
+        digit = 0
         for let in word:
             d[let] += 1
-    return d
+            digitList[digit].add(let)
+            digit += 1
+    return [d, digitList]
 
-def rankWords(rawList, possibles, dFreq):
+def rankWords(rawList, possibles, dFreq, digitFreq):
     d = {}
     for num in possibles:
         word = rawList[num]
         d[num] = 0
         log = []
+        digit = 0
         for let in word:
+            d[num] += 2*digitFreq[digit].storage[let]
             if log.count(let):
                 d[num] += (-1/2)*dFreq[let]
                 pass
@@ -47,5 +62,5 @@ def rankWords(rawList, possibles, dFreq):
 
 def printWords(rawList, possibles):
     f = frequencyCreator(rawList, possibles)
-    rankedIndices = rankWords(rawList, possibles, f)
+    rankedIndices = rankWords(rawList, possibles, f[0], f[1])
     print(parseList(rawList, rankedIndices))

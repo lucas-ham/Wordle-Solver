@@ -9,7 +9,7 @@ from improveSolver import *
 
 def printBadWords(rawList, possibleWords, possibleBad):
     f = frequencyCreator(rawList, possibleWords)
-    rankedIndices = rankWords(rawList, possibleBad, f)
+    rankedIndices = rankWords(rawList, possibleBad, f[0], f[1])
     print(parseList(rawList, rankedIndices))
 
 def generateIndices(rawList, tried):
