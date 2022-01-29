@@ -1,7 +1,5 @@
 from solverClass import *
 
-from multiprocessing import Pool
-
 def feedBack(rawList, guess, word):
     i = 0
     parsedGuess = parseList(rawList, [guess])[0]
