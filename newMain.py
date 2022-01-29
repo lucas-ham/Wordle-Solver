@@ -15,8 +15,10 @@ def mainRun():
     for tries in range(6):
         print("Please input your word\n")
         word = input("Type here:  ")
+        word.lower()
         print("\nPlease input the string of colors")
         colors = input("Type here:   ")
+        colors.lower()
         useColors = []
         if word == 'quit' or colors == 'quit':
             break
