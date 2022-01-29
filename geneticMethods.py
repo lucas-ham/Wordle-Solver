@@ -26,9 +26,19 @@ def generateWord(rawList):
 
 def runOnce(rawList, solver):
     w = generateWord(rawList)
-    i = 0
-    while i < 6 and not solver.checkDone():
+    i = 1
+    while i < 7 and not solver.checkDone():
         feed = feedBack(rawList, solver.getGuess(), w)
+        solver.guessFeedback(feed[0],feed[1])
+        i += 1
+    guesses = solver.guesses + 1
+    solver.reset()
+    return guesses
+
+def runGivenWord(rawList, solver, word):
+    i = 1
+    while i < 7 and not solver.checkDone():
+        feed = feedBack(rawList, solver.getGuess(), word)
         solver.guessFeedback(feed[0],feed[1])
         i += 1
     guesses = solver.guesses
@@ -36,16 +46,24 @@ def runOnce(rawList, solver):
     return guesses
 
 def evalSolver(solver):
-    num = 2500
+    num = 500
     sum = 0
     for i in range(num):
         sum += runOnce(solver.rawList, solver)
     solver.addAverage(sum/num)
     return sum/num
 
+def evalAllWords(solver):
+    sum = 0
+    for i in range(len(solver.rawList)):
+        sum += runGivenWord(solver.rawList, solver, i)
+    solver.addAverage(sum/len(solver.rawList))
+    return sum/len(solver.rawList)
+
+
 
 def generateRandom(bounds):
-    return random.randint(bounds[0], bounds[1])
+    return random.uniform(bounds[0], bounds[1])
 
 
 def generateSolver(rawList, rankWeightBounds, rightPlaceBounds, doubleBounds):
@@ -98,7 +116,7 @@ def runGenerations(rawList, numIndivs, numGens, toMoveOn):
     firstGen = createFirstPopulation(rawList, numIndivs)
     dict = {}
     for s in firstGen:
-        dict[evalSolver(s)] = s
+        dict[evalAllWords(s)] = s
     i = 0
     for key in sorted(dict):
         if i == 0:
@@ -117,7 +135,7 @@ def runGenerations(rawList, numIndivs, numGens, toMoveOn):
                                         [bestSolver.doubleWeight, worstSolver.doubleWeight])
         currDict = {}
         for s in currGen:
-            currDict[evalSolver(s)] = s
+            currDict[evalAllWords(s)] = s
         i = 0
         for key in sorted(currDict):
             if i == 0:
@@ -131,3 +149,33 @@ def runGenerations(rawList, numIndivs, numGens, toMoveOn):
         best = currDict[key]
         break
     return best
+
+def compareSolvers(rawList, s1, s2):
+    w = generateWord(rawList)
+    numSame = 1
+    f1 = feedBack(rawList, s1.startingWord, w)
+    s1.guessFeedback(f1[0],f1[1])
+    f2 = feedBack(rawList, s2.startingWord, w)
+    s2.guessFeedback(f2[0], f2[1])
+    while len(s1.possibles) > 1 and len(s2.possibles) > 1:
+        if s1.getGuess() == s2.getGuess():
+            f = feedBack(rawList, s1.getGuess(), w)
+            s1.guessFeedback(f[0],f[1])
+            s2.guessFeedback(f[0],f[1])
+            numSame += 1
+        else:
+            f1 = feedBack(rawList, s1.getGuess(), w)
+            s1.guessFeedback(f1[0],f1[1])
+            f2 = feedBack(rawList, s2.getGuess(), w)
+            s2.guessFeedback(f2[0], f2[1])
+    firstGuesses = s1.guesses
+    secondGuesses = s2.guesses
+    s1.reset()
+    s2.reset()
+    if firstGuesses == 2 or secondGuesses == 2:
+        print(parseList(rawList, [w]))
+    return numSame, firstGuesses, secondGuesses
+
+s1 = Solver(rawList, 108, 5,6,-2)
+s2 = Solver(rawList, 108, 1,1,-1/2)
+compareSolvers(rawList, s1,s2)

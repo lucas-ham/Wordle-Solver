@@ -35,5 +35,5 @@ def generateBadRanking(rawList, tried, possibleWords):
     possibles = generateIndices(rawList, tried)
     f = frequencyCreator(rawList, possibleWords)
     f[1] = eraseNullLetters(f[0], f[1])
-    rankedIndices = rankWords(rawList, possibleWords, f[0], f[1])
+    rankedIndices = rankWords(rawList, possibles, f[0], f[1])
     return rankedIndices

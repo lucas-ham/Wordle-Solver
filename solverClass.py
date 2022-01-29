@@ -65,7 +65,7 @@ class Solver:
         possibles = generateIndices(self.rawList, self.tried)
         f = frequencyCreator(self.rawList, self.possibles)
         f[1] = eraseNullLetters(f[0], f[1])
-        rankedIndices = self.ranker(self.possibles, f[0], f[1])
+        rankedIndices = self.ranker(possibles, f[0], f[1])
         return rankedIndices
     def getGuess(self):
         goodRanked = self.rankGood()
